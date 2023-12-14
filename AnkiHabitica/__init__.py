@@ -656,7 +656,7 @@ def score_backlog(silent=False):
             except urllib.error.HTTPError as e:
                 if e.code == 429:
                     delay = e.headers['Retry-After']
-                    delay = int(delay)
+                    delay = float(delay)
                     time.sleep(delay)
                     break
         mw.progress.finish()

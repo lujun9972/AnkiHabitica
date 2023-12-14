@@ -78,10 +78,10 @@ class HabiticaAPI(object):
         except urllib.error.HTTPError as e:
             if e.code == 429:
                 delay = e.headers['Retry-After']
-                delay = int(delay)
-                print("touch the rating limit, waiting " + delay + "seconds")
+                delay = float(delay)
+                print("touch the rating limit, waiting " + str(delay ) + "seconds")
                 time.sleep(delay)
-                print("try to request " + req + "again")
+                print("try to request " + url + "again")
                 response = json.load(opener.open(req, timeout=timeout))
 
         if response['success']:
